@@ -41,5 +41,9 @@ typedef struct
 
 void creDerivSystem(DerivSystem* deriv, pCount n);
 void remDerivSystem(DerivSystem* deriv);
+void addParticleDeriv(ParticleSystem *sys, DerivSystem *deriv, double factor);
+void systemNewState(ParticleSystem *sys, DerivSystem* derives, double factor);
+void creParticleSystem(ParticleSystem *sys);
+void remParticleSystem(ParticleSystem *sys);
 
 #endif
