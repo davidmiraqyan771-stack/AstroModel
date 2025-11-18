@@ -1,4 +1,3 @@
-#include "../particles/particles.h"
 #include "gravity.h"
 #include <math.h>
 
