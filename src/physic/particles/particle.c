@@ -6,6 +6,12 @@ void creParticleSystem(ParticleSystem *sys) {
     sys->p = creDy(sys->n, sizeof(Particle));
 }
 
+void cpyParticleSystem(ParticleSystem *sys, ParticleSystem *tmp) {
+    for(int i = 0; i < tmp->n; ++i) {
+        tmp->p[i] = sys->p[i];
+    }
+}
+
 void remParticleSystem(ParticleSystem *sys) {
     free(sys->p);
     sys->n = 0;

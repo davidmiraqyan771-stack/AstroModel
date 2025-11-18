@@ -45,5 +45,6 @@ void addParticleDeriv(ParticleSystem *sys, DerivSystem *deriv, double factor);
 void systemNewState(ParticleSystem *sys, DerivSystem* derives, double factor);
 void creParticleSystem(ParticleSystem *sys);
 void remParticleSystem(ParticleSystem *sys);
+void cpyParticleSystem(ParticleSystem *sys, ParticleSystem *tmp);
 
 #endif
