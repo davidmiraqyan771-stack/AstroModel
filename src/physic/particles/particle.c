@@ -1,6 +1,6 @@
 #include "./particles.h"
 #include "../../utils/dynamicMem/dynamicMem.h"
-
+#include <stdlib.h>
 
 void creParticleSystem(ParticleSystem *sys) {
     sys->p = creDy(sys->n, sizeof(Particle));
