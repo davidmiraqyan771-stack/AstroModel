@@ -20,4 +20,5 @@ void* reDy(void* src, size_t size) {
         perror("realloc");
         exit(EXIT_FAILURE);
     }
+    return newMem;
 }
