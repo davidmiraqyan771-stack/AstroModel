@@ -1,0 +1,3 @@
+/home/david/Desktop/AstroModel/src/build/CMakeFiles/astroSim.dir
+/home/david/Desktop/AstroModel/src/build/CMakeFiles/edit_cache.dir
+/home/david/Desktop/AstroModel/src/build/CMakeFiles/rebuild_cache.dir
