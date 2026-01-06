@@ -1,41 +1,219 @@
-#include "./physic/particles/particles.h"
-#include "./physic/rk4/rk4.h"
-#include <math.h>
+#define _XOPEN_SOURCE 700
 #include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
+#include <unistd.h>
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+#include <math.h>
+#include "./includes/shader.h"
+#include "./includes/dynamicMem.h"
+#include "./includes/buffer.h"
+#include "./includes/sleep.h"
+#define START_WIDTH 800
+#define START_HEIGHT 600
+#define FRAME_TIME 1.0 / 60.0
+#define PI 3.14159265359
+
+mat4 viewMatrix;
+mat4 projectionMatrix;
+float viewSize = 10.0f;
+Shader shaderProgram;
+
+RenderParticle *buffers[BUF_COUNT];
+atomic_int guardIndex;
+char appRunning = 1;
+
+void framebuffer_size_callback(GLFWwindow *window, int width, int height);
+void processInput(GLFWwindow *window);
+
 int main(void)
 {
-    ParticleSystem sys = {0};
 
-    sys.n = 2;
-    creParticleSystem(&sys);
-    double dt = 3600;
-    sys.p[0].m = 1.98847e30;
-    sys.p[0].r = 6.9634e8;
-    sys.p[0].x.x = 0.0;
-    sys.p[0].x.y = 0.0;
-    sys.p[0].v.x = 0.0;
-    sys.p[0].v.y = -0.008934;
-    sys.p[1].m = 5.9722e24;
-    sys.p[1].r = 6.371e6;
-    sys.p[1].x.x = 1.495978707e11;
-    sys.p[1].x.y = 0.0;
-    sys.p[1].v.x = 0.0;
-    sys.p[1].v.y = 29784.691;
-    sys.t = 0.0;
+    glfwInit();
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    for (long step = 0; step < 8766 * 1; ++step)
-    { 
-        rk4Step(&sys, dt);
+    GLFWwindow *window = glfwCreateWindow(START_WIDTH, START_HEIGHT, "AstroMod", NULL, NULL);
+    if (window == NULL)
+    {
+        perror("window");
+        glfwTerminate();
+        exit(EXIT_FAILURE);
+    }
 
-        if (step % 24 == 0)
+    glfwMakeContextCurrent(window);
+    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+    {
+        perror("GLAD");
+        glfwTerminate();
+        exit(EXIT_FAILURE);
+    }
+
+    initPhysicsData();
+
+    pthread_t physThreadId;
+
+    if (pthread_create(&physThreadId, NULL, physicCaluclate, NULL) != 0)
+    {
+        perror("Thread filed");
+
+        exit(EXIT_FAILURE);
+    }
+
+    float vertices[] = {
+        -0.5f, -0.5f, 1.0f, 1.0f, 1.0f,
+        0.5f, -0.5f, 1.0f, 1.0f, 1.0f,
+        0.5f, 0.5f, 1.0f, 1.0f, 1.0f,
+        -0.5f, 0.5f, 1.0f, 1.0f, 1.0f};
+
+    GLuint indices[] = {
+        0, 1, 2,
+        2, 3, 0};
+
+    shaderProgram = shaderProgramCreate("../render/shader/GLSLcodes/vertexShader.glsl", "../render/shader/GLSLcodes/fragmentShader.glsl");
+
+    GLuint VBO, VAO, EBO;
+    glGenVertexArrays(1, &VAO);
+    glGenBuffers(1, &VBO);
+    glGenBuffers(1, &EBO);
+    glBindVertexArray(VAO);
+
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)0);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)(2 * sizeof(float)));
+    glEnableVertexAttribArray(0);
+    glEnableVertexAttribArray(1);
+
+    glViewport(0, 0, 800, 600);
+
+    // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+    // vec4 vector = {1.0f, 0.0f, 0.0f, 1.0f};
+    glm_mat4_identity(projectionMatrix);
+    float aspect = START_WIDTH / (float)START_HEIGHT;
+    if (aspect >= 1.0f)
+    {
+        glm_ortho(
+            -viewSize * aspect / 2.0f, viewSize * aspect / 2.0f,
+            -viewSize / 2.0f, viewSize / 2.0f,
+            -1.0f, 1.0f,
+            projectionMatrix);
+    }
+    else
+    {
+        glm_ortho(
+            -viewSize / 2.0f, viewSize / 2.0f,
+            -viewSize / aspect / 2.0f, viewSize / aspect / 2.0f,
+            -1.0f, 1.0f,
+            projectionMatrix);
+    }
+
+    glm_mat4_identity(viewMatrix);
+
+    int readIndex = 1;
+
+    programUse(&shaderProgram);
+    setMat4Uniform(&shaderProgram, "projection", projectionMatrix);
+    setMat4Uniform(&shaderProgram, "view", viewMatrix);
+    setFloatUniform(&shaderProgram, "aspect", aspect);
+
+    double lastTime = glfwGetTime();
+
+
+    while (!glfwWindowShouldClose(window))
+    {
+        double startTime = glfwGetTime();
+
+        processInput(window);
+
+        readIndex = atomic_exchange(&guardIndex, readIndex);
+        RenderParticle *drawData = buffers[readIndex];
+
+        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        programUse(&shaderProgram);
+        // setMat4Uniform(&shaderProgram, "projection", projectionMatrix);
+        // setMat4Uniform(&shaderProgram, "view", viewMatrix);
+        // setFloatUniform(&shaderProgram, "aspect", aspect);
+
+        for (int i = 0; i < PARTICLE_COUNT; ++i)
         {
-            double r = sqrt(sys.p[1].x.x*sys.p[1].x.x + sys.p[1].x.y * sys.p[1].x.y);
-            printf(
-                "Day: %ld\nt: %lf x: %lf y: %lf dist: %lf vx: %lf vy: %lf\n", 
-                step / 24, sys.t, sys.p[1].x.x, sys.p[1].x.y, r, sys.p[1].v.x, sys.p[1].v.y
-            );
+            mat4 model;
+            glm_mat4_identity(model);
+            glm_translate(model, (float[]){drawData[i].x, drawData[i].y, 0.0f});
+            float scale = drawData[i].r * 1.5f;
+            glm_scale(model, (vec3){scale, scale, 1.0f});
+            setMat4Uniform(&shaderProgram, "model", model);
+            glBindVertexArray(VAO);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        }
+        printf("vx: %lf, vy: %lf\n",drawData[1].x, drawData[1].y);
+        glfwPollEvents();
+        glfwSwapBuffers(window);
+
+        double endTime = glfwGetTime();
+        double frameDuration = endTime - startTime;
+
+        if (frameDuration < FRAME_TIME) {
+            double sleepSeconds = FRAME_TIME - frameDuration;
+            
+            UsSleep((long)(sleepSeconds * 1000000.0));
         }
     }
 
-    remParticleSystem(&sys);
+    appRunning = 0;
+    pthread_join(physThreadId, NULL);
+    destroyPhysicsData();
+    glDeleteVertexArrays(1, &VAO);
+    glDeleteBuffers(1, &VBO);
+    glDeleteProgram(shaderProgram.id);
+
+    glfwTerminate();
+}
+
+void framebuffer_size_callback(GLFWwindow *window, int width, int height)
+{
+    glViewport(0, 0, width, height);
+
+    float aspect = width / (float)height;
+
+    glm_mat4_identity(projectionMatrix);
+
+    if (aspect >= 1.0f)
+    {
+        glm_ortho(
+            -viewSize * aspect / 2.0f, viewSize * aspect / 2.0f,
+            -viewSize / 2.0f, viewSize / 2.0f,
+            -1.0f, 1.0f,
+            projectionMatrix);
+    }
+    else
+    {
+        glm_ortho(
+            -viewSize / 2.0f, viewSize / 2.0f,
+            -viewSize / aspect / 2.0f, viewSize / aspect / 2.0f,
+            -1.0f, 1.0f,
+            projectionMatrix);
+    }
+
+    programUse(&shaderProgram);
+    setMat4Uniform(&shaderProgram, "projection", projectionMatrix);
+}
+
+void processInput(GLFWwindow *window)
+{
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+    {
+        glfwSetWindowShouldClose(window, GLFW_TRUE);
+    }
 }

@@ -1,4 +1,4 @@
-#include "vector.h"
+#include "../../includes/vector.h"
 
 Vec2 vecAdd(Vec2 aVector, Vec2 bVector) { return (Vec2){aVector.x + bVector.x, aVector.y + bVector.y}; }
 Vec2 vecSub(Vec2 aVector, Vec2 bVector) { return (Vec2){aVector.x - bVector.x, aVector.y - bVector.y}; }

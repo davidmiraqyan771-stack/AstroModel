@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-
 void* creDy(size_t n, size_t size) {
     void* mem = calloc(n, size);
     if(mem == NULL) {
