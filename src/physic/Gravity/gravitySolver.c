@@ -1,4 +1,4 @@
-#include "gravity.h"
+#include "../../includes/gravity.h"
 #include <math.h>
 
 void computeDerivative(const ParticleSystem *src, DerivSystem *dest)

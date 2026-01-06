@@ -1,5 +1,5 @@
-#include "./particles.h"
-#include "../../utils/dynamicMem/dynamicMem.h"
+#include "../../includes/particles.h"
+#include "../../includes/dynamicMem.h"
 #include <stdlib.h>
 
 void creParticleSystem(ParticleSystem *sys) {
@@ -17,6 +17,7 @@ void remParticleSystem(ParticleSystem *sys) {
     sys->n = 0;
 }
 
+
 void creDerivSystem(DerivSystem *deriv, pCount n)
 {
 
@@ -32,7 +33,7 @@ void remDerivSystem(DerivSystem *deriv)
 
 void addParticleDeriv(ParticleSystem *sys, const DerivSystem *deriv, double factor)
 {
-    for (int i = 0; i < sys->n; i++)
+    for (int i = 0; i < sys->n; ++i)
     {
         sys->p[i].x = vecAdd(sys->p[i].x, vecScale(deriv->dp[i].dx, factor));
         sys->p[i].v = vecAdd(sys->p[i].v, vecScale(deriv->dp[i].dv, factor));

@@ -1,5 +1,6 @@
-#include "../particles/particles.h"
-#include "../Gravity/gravity.h"
+#include "../../includes/particles.h"
+#include "../../includes/gravity.h"
+
 
 void rk4Step(ParticleSystem *sys, double deltaT)
 {
