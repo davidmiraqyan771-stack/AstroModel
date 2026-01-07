@@ -5,9 +5,7 @@
 
 typedef struct {
 
-    double x;
-    double y;
-
+    double x,y;
 } Vec2;
 
 Vec2 vecAdd(Vec2 aVector, Vec2 bVector);
