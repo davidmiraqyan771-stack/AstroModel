@@ -7,11 +7,10 @@ typedef unsigned int pCount;
 
 typedef struct
 {
-    double m;
-    double r;
     Vec2 x;
     Vec2 v;
-
+    double m;
+    double r;
 } Particle;
 
 typedef struct
