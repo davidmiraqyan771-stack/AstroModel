@@ -17,7 +17,7 @@
 
 mat4 viewMatrix;
 mat4 projectionMatrix;
-float viewSize = 10.0f;
+float viewSize = 20.0f;
 Shader shaderProgram;
 
 RenderParticle *buffers[BUF_COUNT];
@@ -142,22 +142,20 @@ int main(void)
         glClear(GL_COLOR_BUFFER_BIT);
 
         programUse(&shaderProgram);
-        // setMat4Uniform(&shaderProgram, "projection", projectionMatrix);
-        // setMat4Uniform(&shaderProgram, "view", viewMatrix);
-        // setFloatUniform(&shaderProgram, "aspect", aspect);
 
         for (int i = 0; i < PARTICLE_COUNT; ++i)
         {
             mat4 model;
             glm_mat4_identity(model);
             glm_translate(model, (float[]){drawData[i].x, drawData[i].y, 0.0f});
-            float scale = drawData[i].r * 1.5f;
+            float scale = drawData[i].r;
             glm_scale(model, (vec3){scale, scale, 1.0f});
             setMat4Uniform(&shaderProgram, "model", model);
             glBindVertexArray(VAO);
             glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         }
-        printf("vx: %lf, vy: %lf\n",drawData[1].x, drawData[1].y);
+        float r = sqrt(drawData[2].x*drawData[2].x + drawData[2].y * drawData[2].y);
+        printf("x: %f, y: %f r: %f\n",drawData[2].x, drawData[2].y, r);
         glfwPollEvents();
         glfwSwapBuffers(window);
 

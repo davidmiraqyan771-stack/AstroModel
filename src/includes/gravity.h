@@ -3,7 +3,7 @@
 
 #include "./particles.h"
 
-#define G_CONSTANT 4*(3.14159265359 * 3.14159265359)
+#define G_CONSTANT 39.4784176
 
 void computeDerivative(const ParticleSystem *src, DerivSystem *dest);
 

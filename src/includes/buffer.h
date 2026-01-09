@@ -3,7 +3,7 @@
 #include "particles.h"
 #include <stdatomic.h>
 #define BUF_COUNT 3
-#define PARTICLE_COUNT 2
+#define PARTICLE_COUNT 3
 
 extern RenderParticle* buffers[BUF_COUNT]; 
 extern atomic_int guardIndex;                   
