@@ -37,5 +37,6 @@ void rk4Step(ParticleSystem *sys, double deltaT)
     remDerivSystem(&k[1]);
     remDerivSystem(&k[2]);
     remDerivSystem(&k[3]);
+    
     sys->t += deltaT;
 }

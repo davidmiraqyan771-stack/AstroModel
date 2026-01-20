@@ -17,7 +17,7 @@
 
 mat4 viewMatrix;
 mat4 projectionMatrix;
-float viewSize = 20.0f;
+float viewSize = 10.0f;
 Shader shaderProgram;
 
 RenderParticle *buffers[BUF_COUNT];
@@ -128,7 +128,6 @@ int main(void)
 
     double lastTime = glfwGetTime();
 
-
     while (!glfwWindowShouldClose(window))
     {
         double startTime = glfwGetTime();
@@ -154,8 +153,8 @@ int main(void)
             glBindVertexArray(VAO);
             glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         }
-        float r = sqrt(drawData[2].x*drawData[2].x + drawData[2].y * drawData[2].y);
-        printf("x: %f, y: %f r: %f\n",drawData[2].x, drawData[2].y, r);
+        float r = sqrt(drawData[1].x*drawData[1].x + drawData[1].y * drawData[1].y);
+        printf("x: %f, y: %f r: %f\n",drawData[1].x, drawData[1].y, r);
         glfwPollEvents();
         glfwSwapBuffers(window);
 

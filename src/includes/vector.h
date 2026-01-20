@@ -1,7 +1,8 @@
 #ifndef VEC_H
 #define VEC_H
 
-#define EPSILON 1e-6
+// #define EPSILON 1e-6
+#define EPSILON 1e-3
 
 typedef struct {
 

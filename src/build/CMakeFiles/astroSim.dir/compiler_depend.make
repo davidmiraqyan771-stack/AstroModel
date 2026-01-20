@@ -312,6 +312,8 @@ CMakeFiles/astroSim.dir/physic/particles/particle.c.o: /home/david/Desktop/Astro
 
 CMakeFiles/astroSim.dir/physic/physicThread.c.o: /home/david/Desktop/AstroModel/src/physic/physicThread.c \
   /home/david/Desktop/AstroModel/src/includes/particles.h \
+  /home/david/Desktop/AstroModel/src/includes/gravity.h \
+  /home/david/Desktop/AstroModel/src/includes/particles.h \
   /home/david/Desktop/AstroModel/src/includes/vector.h \
   /home/david/Desktop/AstroModel/src/includes/buffer.h \
   /home/david/Desktop/AstroModel/src/includes/dynamicMem.h \
@@ -322,6 +324,7 @@ CMakeFiles/astroSim.dir/physic/physicThread.c.o: /home/david/Desktop/AstroModel/
   /usr/include/endian.h \
   /usr/include/features-time64.h \
   /usr/include/features.h \
+  /usr/include/math.h \
   /usr/include/stdc-predef.h \
   /usr/include/stdio.h \
   /usr/include/stdlib.h \
@@ -335,10 +338,17 @@ CMakeFiles/astroSim.dir/physic/physicThread.c.o: /home/david/Desktop/AstroModel/
   /usr/include/x86_64-linux-gnu/bits/environments.h \
   /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
   /usr/include/x86_64-linux-gnu/bits/floatn.h \
+  /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
+  /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
+  /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
   /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
+  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
   /usr/include/x86_64-linux-gnu/bits/long-double.h \
+  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
   /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
   /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h \
