@@ -1,0 +1,80 @@
+[
+{
+  "directory": "/home/david/Desktop/AstroModel/mainProject/src/build",
+  "command": "/usr/bin/cc  -I/home/david/Desktop/AstroModel/mainProject/src/includes -std=gnu17 -o CMakeFiles/astroSim.dir/main.c.o -c /home/david/Desktop/AstroModel/mainProject/src/main.c",
+  "file": "/home/david/Desktop/AstroModel/mainProject/src/main.c",
+  "output": "CMakeFiles/astroSim.dir/main.c.o"
+},
+{
+  "directory": "/home/david/Desktop/AstroModel/mainProject/src/build",
+  "command": "/usr/bin/cc  -I/home/david/Desktop/AstroModel/mainProject/src/includes -std=gnu17 -o CMakeFiles/astroSim.dir/glad.c.o -c /home/david/Desktop/AstroModel/mainProject/src/glad.c",
+  "file": "/home/david/Desktop/AstroModel/mainProject/src/glad.c",
+  "output": "CMakeFiles/astroSim.dir/glad.c.o"
+},
+{
+  "directory": "/home/david/Desktop/AstroModel/mainProject/src/build",
+  "command": "/usr/bin/cc  -I/home/david/Desktop/AstroModel/mainProject/src/includes -std=gnu17 -o CMakeFiles/astroSim.dir/physic/Gravity/gravitySolver.c.o -c /home/david/Desktop/AstroModel/mainProject/src/physic/Gravity/gravitySolver.c",
+  "file": "/home/david/Desktop/AstroModel/mainProject/src/physic/Gravity/gravitySolver.c",
+  "output": "CMakeFiles/astroSim.dir/physic/Gravity/gravitySolver.c.o"
+},
+{
+  "directory": "/home/david/Desktop/AstroModel/mainProject/src/build",
+  "command": "/usr/bin/cc  -I/home/david/Desktop/AstroModel/mainProject/src/includes -std=gnu17 -o CMakeFiles/astroSim.dir/physic/particles/particle.c.o -c /home/david/Desktop/AstroModel/mainProject/src/physic/particles/particle.c",
+  "file": "/home/david/Desktop/AstroModel/mainProject/src/physic/particles/particle.c",
+  "output": "CMakeFiles/astroSim.dir/physic/particles/particle.c.o"
+},
+{
+  "directory": "/home/david/Desktop/AstroModel/mainProject/src/build",
+  "command": "/usr/bin/cc  -I/home/david/Desktop/AstroModel/mainProject/src/includes -std=gnu17 -o CMakeFiles/astroSim.dir/physic/rk4/rungekutta4.c.o -c /home/david/Desktop/AstroModel/mainProject/src/physic/rk4/rungekutta4.c",
+  "file": "/home/david/Desktop/AstroModel/mainProject/src/physic/rk4/rungekutta4.c",
+  "output": "CMakeFiles/astroSim.dir/physic/rk4/rungekutta4.c.o"
+},
+{
+  "directory": "/home/david/Desktop/AstroModel/mainProject/src/build",
+  "command": "/usr/bin/cc  -I/home/david/Desktop/AstroModel/mainProject/src/includes -std=gnu17 -o CMakeFiles/astroSim.dir/physic/physicThread.c.o -c /home/david/Desktop/AstroModel/mainProject/src/physic/physicThread.c",
+  "file": "/home/david/Desktop/AstroModel/mainProject/src/physic/physicThread.c",
+  "output": "CMakeFiles/astroSim.dir/physic/physicThread.c.o"
+},
+{
+  "directory": "/home/david/Desktop/AstroModel/mainProject/src/build",
+  "command": "/usr/bin/cc  -I/home/david/Desktop/AstroModel/mainProject/src/includes -std=gnu17 -o CMakeFiles/astroSim.dir/render/shader/shader.c.o -c /home/david/Desktop/AstroModel/mainProject/src/render/shader/shader.c",
+  "file": "/home/david/Desktop/AstroModel/mainProject/src/render/shader/shader.c",
+  "output": "CMakeFiles/astroSim.dir/render/shader/shader.c.o"
+},
+{
+  "directory": "/home/david/Desktop/AstroModel/mainProject/src/build",
+  "command": "/usr/bin/cc  -I/home/david/Desktop/AstroModel/mainProject/src/includes -std=gnu17 -o CMakeFiles/astroSim.dir/utils/dynamicMem/dynamicMem.c.o -c /home/david/Desktop/AstroModel/mainProject/src/utils/dynamicMem/dynamicMem.c",
+  "file": "/home/david/Desktop/AstroModel/mainProject/src/utils/dynamicMem/dynamicMem.c",
+  "output": "CMakeFiles/astroSim.dir/utils/dynamicMem/dynamicMem.c.o"
+},
+{
+  "directory": "/home/david/Desktop/AstroModel/mainProject/src/build",
+  "command": "/usr/bin/cc  -I/home/david/Desktop/AstroModel/mainProject/src/includes -std=gnu17 -o CMakeFiles/astroSim.dir/utils/vectors/vector.c.o -c /home/david/Desktop/AstroModel/mainProject/src/utils/vectors/vector.c",
+  "file": "/home/david/Desktop/AstroModel/mainProject/src/utils/vectors/vector.c",
+  "output": "CMakeFiles/astroSim.dir/utils/vectors/vector.c.o"
+},
+{
+  "directory": "/home/david/Desktop/AstroModel/mainProject/src/build",
+  "command": "/usr/bin/cc  -I/home/david/Desktop/AstroModel/mainProject/src/includes -std=gnu17 -o CMakeFiles/astroSim.dir/utils/sleep/sleep.c.o -c /home/david/Desktop/AstroModel/mainProject/src/utils/sleep/sleep.c",
+  "file": "/home/david/Desktop/AstroModel/mainProject/src/utils/sleep/sleep.c",
+  "output": "CMakeFiles/astroSim.dir/utils/sleep/sleep.c.o"
+},
+{
+  "directory": "/home/david/Desktop/AstroModel/mainProject/src/build",
+  "command": "/usr/bin/cc  -I/home/david/Desktop/AstroModel/mainProject/src/includes -std=gnu17 -o CMakeFiles/astroSim.dir/render/initOpenGL.c.o -c /home/david/Desktop/AstroModel/mainProject/src/render/initOpenGL.c",
+  "file": "/home/david/Desktop/AstroModel/mainProject/src/render/initOpenGL.c",
+  "output": "CMakeFiles/astroSim.dir/render/initOpenGL.c.o"
+},
+{
+  "directory": "/home/david/Desktop/AstroModel/mainProject/src/build",
+  "command": "/usr/bin/cc  -I/home/david/Desktop/AstroModel/mainProject/src/includes -std=gnu17 -o CMakeFiles/astroSim.dir/render/callbacks/callbacks.c.o -c /home/david/Desktop/AstroModel/mainProject/src/render/callbacks/callbacks.c",
+  "file": "/home/david/Desktop/AstroModel/mainProject/src/render/callbacks/callbacks.c",
+  "output": "CMakeFiles/astroSim.dir/render/callbacks/callbacks.c.o"
+},
+{
+  "directory": "/home/david/Desktop/AstroModel/mainProject/src/build",
+  "command": "/usr/bin/cc  -I/home/david/Desktop/AstroModel/mainProject/src/includes -std=gnu17 -o CMakeFiles/astroSim.dir/render/camera/camera.c.o -c /home/david/Desktop/AstroModel/mainProject/src/render/camera/camera.c",
+  "file": "/home/david/Desktop/AstroModel/mainProject/src/render/camera/camera.c",
+  "output": "CMakeFiles/astroSim.dir/render/camera/camera.c.o"
+}
+]
