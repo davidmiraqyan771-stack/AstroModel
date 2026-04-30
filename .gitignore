@@ -1,6 +1,1 @@
-build/
-src/build/
 CMakeCache.txt
-CMakeFiles/
-Makefile
-cmake_install.cmake
