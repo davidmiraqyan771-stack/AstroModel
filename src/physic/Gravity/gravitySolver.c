@@ -17,9 +17,9 @@ void computeDerivative(const ParticleSystem *src, DerivSystem *dest)
             }
 
             Vec2 distVec = vecSub(src->p[j].pos, src->p[i].pos);
-            double distancesq = vecDistSq(src->p[j].pos, src->p[i].pos);
-            dest->dp[i].dvel.x += G_CONSTANT * src->p[j].m * (distVec.x / (distancesq * sqrt(distancesq)));
-            dest->dp[i].dvel.y += G_CONSTANT * src->p[j].m * (distVec.y / (distancesq * sqrt(distancesq)));
+            double distanceSq = vecDistSq(src->p[j].pos, src->p[i].pos);
+            dest->dp[i].dvel.x += G_CONSTANT * src->p[j].m * (distVec.x / (distanceSq * sqrt(distanceSq)));
+            dest->dp[i].dvel.y += G_CONSTANT * src->p[j].m * (distVec.y / (distanceSq * sqrt(distanceSq)));
         }
     }
 }
