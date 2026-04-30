@@ -17,16 +17,16 @@ void rk4Step(ParticleSystem *sys, double deltaT)
     creDerivSystem(&k[3], tmp.n);
 
     computeDerivative(&tmp, &k[0]);
-    addParticleDeriv(&tmp, &k[0], deltaT / 2);
+    addDerivSystem(&tmp, &k[0], deltaT / 2);
 
     computeDerivative(&tmp, &k[1]);
     cpyParticleSystem(sys, &tmp);
 
-    addParticleDeriv(&tmp, &k[1], deltaT / 2);
+    addDerivSystem(&tmp, &k[1], deltaT / 2);
     computeDerivative(&tmp, &k[2]);
     cpyParticleSystem(sys, &tmp);
 
-    addParticleDeriv(&tmp, &k[2], deltaT);
+    addDerivSystem(&tmp, &k[2], deltaT);
     computeDerivative(&tmp, &k[3]);
 
     systemNewState(sys, k, deltaT / 6);

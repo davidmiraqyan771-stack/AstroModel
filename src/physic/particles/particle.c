@@ -31,7 +31,7 @@ void remDerivSystem(DerivSystem *deriv)
     deriv->n = 0;
 }
 
-void addParticleDeriv(ParticleSystem *sys, const DerivSystem *deriv, double factor)
+void addDerivSystem(ParticleSystem *sys, const DerivSystem *deriv, double factor)
 {
     for (int i = 0; i < sys->n; ++i)
     {
