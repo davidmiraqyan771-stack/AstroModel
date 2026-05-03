@@ -58,7 +58,8 @@ int main(void)
     if (pthread_create(&physThreadId, NULL, physicCaluclate, NULL) != 0)
     {
         perror("Thread filed");
-
+        glfwTerminate();
+        destroyPhysicsData();
         exit(EXIT_FAILURE);
     }
 
@@ -117,7 +118,7 @@ int main(void)
 
     glm_mat4_identity(viewMatrix);
 
-    int readIndex = 1;
+    int readIndex = 0;
 
     programUse(&shaderProgram);
     setMat4Uniform(&shaderProgram, "projection", projectionMatrix);

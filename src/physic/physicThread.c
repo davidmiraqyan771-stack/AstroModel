@@ -2,7 +2,6 @@
 #include "../includes/dynamicMem.h"
 #include "../includes/rk4.h"
 #include "../includes/sleep.h"
-#include "../includes/gravity.h"
 #include <unistd.h>
 #include <stdlib.h>
 #include <math.h>
@@ -81,7 +80,7 @@ void destroyPhysicsData(void)
 void *physicCaluclate(void *args)
 {
     double dt = 0.00002;
-    int writeIndex = 0;
+    int writeIndex = 1;
     double lasty = 0.0;
     while (appRunning)
     {
