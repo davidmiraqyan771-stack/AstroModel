@@ -99,7 +99,7 @@ void programUse(const Shader *prog) {
 }
 
 void setFloatUniform(const Shader *prog, const char *name, float value) {
-  GLuint loc = glGetUniformLocation(prog->id, name);
+  GLint loc = glGetUniformLocation(prog->id, name);
   if (loc == -1) {
     perror("Uniform not found");
     appRunning = 0;
@@ -111,7 +111,7 @@ void setFloatUniform(const Shader *prog, const char *name, float value) {
 // glUniformMatrix4fv
 
 void setMat4Uniform(const Shader *prog, const char *name, mat4 value) {
-  GLuint loc = glGetUniformLocation(prog->id, name);
+  GLint loc = glGetUniformLocation(prog->id, name);
   if (loc == -1) {
     perror("Uniform not found");
     appRunning = 0;
