@@ -327,10 +327,11 @@ CMakeFiles/astroSim.dir/physic/particles/particle.c.o
 CMakeFiles/astroSim.dir/physic/physicThread.c.o
  /home/david/Desktop/AstroModel/src/physic/physicThread.c
  /home/david/Desktop/AstroModel/src/includes/particles.h
+ /home/david/Desktop/AstroModel/src/includes/gravity.h
+ /home/david/Desktop/AstroModel/src/includes/particles.h
  /home/david/Desktop/AstroModel/src/includes/vector.h
  /home/david/Desktop/AstroModel/src/includes/buffer.h
  /home/david/Desktop/AstroModel/src/includes/dynamicMem.h
- /home/david/Desktop/AstroModel/src/includes/gravity.h
  /home/david/Desktop/AstroModel/src/includes/particles.h
  /home/david/Desktop/AstroModel/src/includes/rk4.h
  /home/david/Desktop/AstroModel/src/includes/sleep.h
